@@ -1,4 +1,4 @@
-import EventEmitter from "events";
+import EventEmitter from "eventemitter3";
 import { KitKinds, KITS, SOUNDS, SWIPE_SOUND_KEYS, TAP_SOUND_KEYS, TYPE_SOUND_KEYS } from "./constant";
 import SoundKit from "./soundKit";
 import DOMInteraction from "./domInteraction";
