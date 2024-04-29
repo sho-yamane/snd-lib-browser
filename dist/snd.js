@@ -12,13 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const events_1 = __importDefault(require("events"));
+const eventemitter3_1 = __importDefault(require("eventemitter3"));
 const constant_1 = require("./constant");
 const soundKit_1 = __importDefault(require("./soundKit"));
 const domInteraction_1 = __importDefault(require("./domInteraction"));
 const tween_1 = __importDefault(require("./tween"));
 const audioSource_1 = __importDefault(require("./audioSource"));
-class Snd extends events_1.default {
+class Snd extends eventemitter3_1.default {
+    static get masterVolume() { return this._masterVolume; }
+    static set masterVolume(val) {
+        this._masterVolume = val;
+        this._instances.forEach((instance) => {
+            instance._soundKit.masterVolume = this._masterVolume * instance._volume;
+        });
+    }
     constructor(options) {
         super();
         this._soundKit = new soundKit_1.default(constant_1.KITS.SND01);
@@ -74,13 +81,6 @@ class Snd extends events_1.default {
             window.addEventListener("blur", this._onBlur);
             window.addEventListener("focus", this._onFocus);
         }
-    }
-    static get masterVolume() { return this._masterVolume; }
-    static set masterVolume(val) {
-        this._masterVolume = val;
-        this._instances.forEach((instance) => {
-            instance._soundKit.masterVolume = this._masterVolume * instance._volume;
-        });
     }
     get kit() { return this._soundKit.key; }
     get isMuted() { return this._isMutedByDeveloper || this._isMutedByWindow; }

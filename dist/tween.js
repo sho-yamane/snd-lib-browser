@@ -10,6 +10,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 class Tween {
+    static to(target, propName, to, options) {
+        if (target[propName] === undefined)
+            throw new Error(`prop: ${propName} does not exists in ${target}`);
+        else
+            return new Tween(target, propName, 0, to, "to", options);
+    }
+    static from(target, propName, from, options) {
+        if (target[propName] === undefined)
+            throw new Error(`prop: ${propName} does not exists in ${target}`);
+        return new Tween(target, propName, from, 0, "from", options);
+    }
+    static fromTo(target, propName, from, to, options) {
+        if (target[propName] === undefined)
+            throw new Error(`prop: ${propName} does not exists in ${target}`);
+        return new Tween(target, propName, from, to, "fromTo", options);
+    }
     constructor(target, propName, from, to, type, options) {
         this._propName = "";
         this._to = 0;
@@ -74,22 +90,6 @@ class Tween {
         else {
             throw new Error(`prop: ${this._propName} does not exists in ${this._target}`);
         }
-    }
-    static to(target, propName, to, options) {
-        if (target[propName] === undefined)
-            throw new Error(`prop: ${propName} does not exists in ${target}`);
-        else
-            return new Tween(target, propName, 0, to, "to", options);
-    }
-    static from(target, propName, from, options) {
-        if (target[propName] === undefined)
-            throw new Error(`prop: ${propName} does not exists in ${target}`);
-        return new Tween(target, propName, from, 0, "from", options);
-    }
-    static fromTo(target, propName, from, to, options) {
-        if (target[propName] === undefined)
-            throw new Error(`prop: ${propName} does not exists in ${target}`);
-        return new Tween(target, propName, from, to, "fromTo", options);
     }
     get _time() {
         return Date.now() / 1000;

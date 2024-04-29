@@ -15,20 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const audioNode_1 = __importDefault(require("./audioNode"));
 const tween_1 = __importDefault(require("./tween"));
 class AudioSource {
-    constructor() {
-        this._audioArrayBuffer = null;
-        this._audioBuffer = null;
-        this._audioList = new Map();
-        this._cnt = 1000;
-        this._json = null;
-        this._hasStartedLoading = false;
-        this._hasLoaded = false;
-        this._hasStartedAnalysis = false;
-        this._hasAnalyzed = false;
-        this._masterVolume = 1;
-        this._analyzePromise = null;
-        AudioSource._instances.push(this);
-    }
     static get isActive() {
         return this._isActive;
     }
@@ -88,6 +74,20 @@ class AudioSource {
                 throw new Error(`an err occurred while AudioSource._createAudioArrayBuffer ${err}`);
             }
         });
+    }
+    constructor() {
+        this._audioArrayBuffer = null;
+        this._audioBuffer = null;
+        this._audioList = new Map();
+        this._cnt = 1000;
+        this._json = null;
+        this._hasStartedLoading = false;
+        this._hasLoaded = false;
+        this._hasStartedAnalysis = false;
+        this._hasAnalyzed = false;
+        this._masterVolume = 1;
+        this._analyzePromise = null;
+        AudioSource._instances.push(this);
     }
     get _uniqueKey() {
         return this._cnt++;
