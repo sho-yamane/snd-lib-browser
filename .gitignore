@@ -3,5 +3,6 @@
 /sndlib/
 /docs/
 .vscode
+.idea
 /assets/sounds/*
 !/assets/sounds/sprite
