@@ -1,5 +1,4 @@
-/// <reference types="node" />
-import EventEmitter from "events";
+import EventEmitter from "eventemitter3";
 export default class DOMInteraction extends EventEmitter {
     static readonly INTERACT: "interact";
     constructor();

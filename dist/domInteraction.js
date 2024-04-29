@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const events_1 = __importDefault(require("events"));
+const eventemitter3_1 = __importDefault(require("eventemitter3"));
 const constant_1 = require("./constant");
 const isTouchDevice = typeof window !== "undefined" && window.ontouchstart !== undefined;
-class DOMInteraction extends events_1.default {
+class DOMInteraction extends eventemitter3_1.default {
     constructor() {
         super();
         this._init();

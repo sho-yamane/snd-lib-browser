@@ -1,4 +1,4 @@
-import EventEmitter from "events";
+import EventEmitter from "eventemitter3";
 import { EVENT_CLASS_NAMES, TOGGLE_SOUND_KEYS, ENABLE_TAGS } from "./constant";
 
 const isTouchDevice: boolean = typeof window !== "undefined" && window.ontouchstart !== undefined
